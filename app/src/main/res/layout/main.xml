@@ -3,24 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff888c8a"
+    android:background="@color/material_blue_grey_950"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/listLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Multi Touch List"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/listLabel"
         android:layout_marginTop="5dp"
         android:cacheColorHint="#FFFFFF" />
 

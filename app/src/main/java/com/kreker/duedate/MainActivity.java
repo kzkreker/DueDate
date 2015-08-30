@@ -1,8 +1,12 @@
 package com.kreker.duedate;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -20,13 +24,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
 
         // inflate the array list with data
-        dueDateArray.add(new DueDate("Nick", "18", "1st Street"));
-        dueDateArray.add(new DueDate("John", "18", "2st Street"));
-        dueDateArray.add(new DueDate("Anthony", "19", "3rd Street"));
-        dueDateArray.add(new DueDate("James", "20", "5th Street"));
-        dueDateArray.add(new DueDate("Jack", "20", "6th Street"));
-        dueDateArray.add(new DueDate("Jeremy", "20", "7th Street"));
-        dueDateArray.add(new DueDate("Long", "21", "1st Street"));
+        dueDateArray.add(new DueDate("Date1", new Date()));
+        dueDateArray.add(new DueDate("Date2", new Date()));
+        dueDateArray.add(new DueDate("Date3", new Date()));
+        dueDateArray.add(new DueDate("Date4", new Date()));
 
         // set the array adapter to use the above array list and tell the listview to set as the adapter
         // our custom adapter
@@ -40,13 +41,18 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     final int position, long id) {
-
                 Toast.makeText(MainActivity.this,
                         "List Item Clicked:" + position, Toast.LENGTH_LONG)
                         .show();
             }
         });
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
 }

@@ -7,11 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by kreker on 30.08.15.
@@ -33,41 +37,30 @@ public class MyArrayAdapter extends ArrayAdapter<DueDate> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View item = convertView;
-        StudentWrapper StudentWrapper = null;
+        DueDateWrapper dueDateWrapper = null;
 
         if (item == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             item = inflater.inflate(layoutResourceId, parent, false);
-            StudentWrapper = new StudentWrapper();
-            StudentWrapper.name = (TextView) item.findViewById(R.id.textName);
-            StudentWrapper.age = (TextView) item.findViewById(R.id.textAge);
-            StudentWrapper.address = (TextView) item.findViewById(R.id.textAddr);
-            StudentWrapper.edit = (Button) item.findViewById(R.id.btnEdit);
-            StudentWrapper.delete = (Button) item.findViewById(R.id.btnDelete);
-            item.setTag(StudentWrapper);
+            dueDateWrapper = new DueDateWrapper();
+            dueDateWrapper.name = (TextView) item.findViewById(R.id.textName);
+            dueDateWrapper.date = (TextView) item.findViewById(R.id.textDate);
+            dueDateWrapper.edit = (ImageButton)item.findViewById(R.id.btnEdit);
+            item.setTag(dueDateWrapper);
         } else {
-            StudentWrapper = (StudentWrapper) item.getTag();
+            dueDateWrapper = (DueDateWrapper) item.getTag();
         }
 
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.US);
+
         DueDate dueDate = dueDates.get(position);
-        StudentWrapper.name.setText(dueDate.getName());
-        StudentWrapper.age.setText(dueDate.getAge());
-        StudentWrapper.address.setText(dueDate.getAddress());
+        dueDateWrapper.name.setText(dueDate.getName());
+        dueDateWrapper.date.setText(df.format(dueDate.getDate()));
 
-        StudentWrapper.edit.setOnClickListener(new OnClickListener() {
-
+        dueDateWrapper.edit.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Edit", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        StudentWrapper.delete.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(context, "Delete", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -75,12 +68,10 @@ public class MyArrayAdapter extends ArrayAdapter<DueDate> {
 
     }
 
-    static class StudentWrapper {
+    static class DueDateWrapper {
         TextView name;
-        TextView age;
-        TextView address;
-        Button edit;
-        Button delete;
+        TextView date;
+        ImageButton edit;
     }
 
 }
