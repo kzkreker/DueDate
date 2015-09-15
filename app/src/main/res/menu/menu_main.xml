@@ -1,6 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="com.kreker.duedate.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ff21272b"
+    tools:context="com.kreker.duedate.MainActivity">
 
 
     <item android:id="@+id/action_settings"
@@ -8,7 +10,7 @@
         android:orderInCategory="100"
         app:showAsAction="never" />
 
-    <item android:id="@+id/action_create"
+    <item android:id="@+id/action_create_due"
         android:title="Создать дату"
         android:orderInCategory="100"
         app:showAsAction="never" />

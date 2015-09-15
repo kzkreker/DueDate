@@ -3,10 +3,12 @@ package com.kreker.duedate;
 import java.util.ArrayList;
 import java.util.Date;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -37,10 +39,8 @@ public class MainActivity extends Activity {
         listview.setAdapter(studentArrayAdapter);
 
         listview.setOnItemClickListener(new OnItemClickListener() {
-
             @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    final int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View v, final int position, long id) {
                 Toast.makeText(MainActivity.this,
                         "List Item Clicked:" + position, Toast.LENGTH_LONG)
                         .show();
@@ -52,7 +52,22 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.action_create_due:
+                Intent intent = new Intent(this, CreateDueDateActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

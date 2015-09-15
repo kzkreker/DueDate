@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CreateDueDateActivity"
+            android:label="@string/title_activity_create_due_date" >
+        </activity>
     </application>
 
+    <uses-sdk android:minSdkVersion="14"
+        android:targetSdkVersion="14"
+        android:maxSdkVersion="14" />
 </manifest>
